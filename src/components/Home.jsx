@@ -12,7 +12,7 @@ function Home() {
         <img src="/images/iteration-1-images/logo.svg" className="header-logo" alt="Teknolojik Yemekler Logo" />
         <p>fırsatı kaçırma</p>
         <h1>KOD ACIKTIRIR <br />PIZZA, DOYURUR</h1>
-        <button onClick={handleButton}>ACIKTIM</button>
+        <button onClick={handleButton} data-cy="aciktim-button">ACIKTIM</button>
         <img src="/images/iteration-2-images/pictures/form-banner.png" alt="" className="header-pizza-mobil" />
       </header>
 

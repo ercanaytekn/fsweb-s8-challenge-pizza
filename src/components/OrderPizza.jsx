@@ -145,6 +145,7 @@ function OrderPizza({ setSiparis }) {
                   value={boyut}
                   checked={formData.boyut === boyut}
                   onChange={handleChange}
+                  data-cy="boyut-radio"
                 />
                 <label htmlFor={`boyut-${boyut}`}>{boyut}</label>
               </div>
@@ -159,6 +160,7 @@ function OrderPizza({ setSiparis }) {
               name="hamur"
               value={formData.hamur}
               onChange={handleChange}
+              data-cy="hamur-select"
             >
               <option value="">Hamur Kalınlığı</option>
               {hamurlar.map((hamur) => (
@@ -180,6 +182,7 @@ function OrderPizza({ setSiparis }) {
                   value={malzeme}
                   checked={formData.malzemeler.includes(malzeme)}
                   onChange={handleCheckbox}
+                  data-cy="malzeme-checkbox"
                 />
                 <label htmlFor={`malzeme-${malzeme}`}>{malzeme}</label>
               </div>
