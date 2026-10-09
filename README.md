@@ -396,3 +396,23 @@ IT1'i bitirdikten sonra çalışmanı daha da ileri götürebilirsin. Buradaki h
 
 - **3 Gereksinimleri Aşıyor:**
   - Doğru yanıta ek, en az bir başka çözüm ile de daha geniş perspektiftan yanıtlayabilme, ikisi arasındaki benzerlik ve uygulama farklarını karşılaştırabilmek.
+
+
+---
+
+## Kurulum (Proje Sahibi Notu)
+
+Projeyi çalıştırmak için kök dizine bir `.env` dosyası oluşturun ve [reqres.in](https://reqres.in) üzerinden aldığınız API anahtarını ekleyin:
+
+```
+VITE_REQRES_KEY=buraya_kendi_anahtariniz
+```
+
+Ardından:
+
+```sh
+npm install
+npm run dev
+```
+
+`.env` dosyası `.gitignore` içindedir, GitHub'a gönderilmez. Anahtar, sipariş POST isteğinde `x-api-key` başlığı olarak kullanılır.

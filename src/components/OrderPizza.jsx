@@ -107,7 +107,7 @@ function OrderPizza({ setSiparis }) {
 
     axios
       .post('https://reqres.in/api/pizza', formData, {
-        headers: { 'x-api-key': 'reqres_fc62cc3416064088aa12a0a9fd728f74' },
+        headers: { 'x-api-key': import.meta.env.VITE_REQRES_KEY },
       })
       .then((res) => {
         console.log(res.data)
