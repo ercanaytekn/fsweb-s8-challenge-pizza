@@ -1,23 +1,25 @@
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
+import { fiyatYaz } from '../fiyat'
 
 function Success({ siparis }) {
   if (!siparis) {
     return (
-      <>
+      <div className="success-page">
         <main className="success">
           <p>Sipariş bulunamadı.</p>
           <Link to="/order">Sipariş oluştur</Link>
         </main>
         <Footer />
-      </>
+      </div>
     )
   }
 
-  const secimler = siparis.malzemeler.length * 5
+  const secimler = siparis.malzemeler.length * 5 * siparis.adet
+  const toplam = 85.5 * siparis.adet + secimler
 
   return (
-    <>
+    <div className="success-page">
       <main className="success">
         <img
           className="success-logo"
@@ -40,17 +42,16 @@ function Success({ siparis }) {
           <h4>Sipariş Toplamı</h4>
           <p>
             <span>Seçimler</span>
-            <span>{secimler}.00₺</span>
+            <span>{fiyatYaz(secimler)}₺</span>
           </p>
           <p>
             <span>Toplam</span>
-            <span>{85 + secimler}.50₺</span>
+            <span>{fiyatYaz(toplam)}₺</span>
           </p>
         </div>
       </main>
-
       <Footer />
-    </>
+    </div>
   )
 }
 
