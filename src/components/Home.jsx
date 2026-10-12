@@ -1,10 +1,35 @@
 import { useHistory } from 'react-router-dom'
 import Footer from './Footer'
+import UrunKarti from './UrunKarti'
+
+const kategoriler = [
+  { ikon: 1, ad: 'YENİ! Kore' },
+  { ikon: 2, ad: 'Pizza' },
+  { ikon: 3, ad: 'Burger' },
+  { ikon: 4, ad: 'Kızartmalar' },
+  { ikon: 5, ad: 'Fast Food' },
+  { ikon: 6, ad: 'Gazlı İçecek' },
+]
+
+const menuFiltreleri = [
+  { ikon: 1, ad: 'Ramen' },
+  { ikon: 2, ad: 'Pizza' },
+  { ikon: 3, ad: 'Burger' },
+  { ikon: 4, ad: 'French fries' },
+  { ikon: 5, ad: 'Fast food' },
+  { ikon: 6, ad: 'Soft drinks' },
+]
+
+const urunler = [
+  { resim: 'food-1.png', ad: 'Terminal Pizza', puan: 4.9, yorum: 200, fiyat: 60 },
+  { resim: 'food-2.png', ad: 'Position Absolute Acı Pizza', puan: 4.9, yorum: 200, fiyat: 60 },
+  { resim: 'food-3.png', ad: 'useEffect Tavuklu Burger', puan: 4.9, yorum: 200, fiyat: 60 },
+]
 
 function Home() {
   const history = useHistory()
 
-  const handleButton = () => history.push("/order")
+  const handleButton = () => history.push('/order')
 
   return (
     <>
@@ -18,12 +43,14 @@ function Home() {
 
       <main>
         <nav>
-          <div><a href="#"><img src="/images/iteration-2-images/icons/1.svg" alt="" />YENİ! Kore</a></div>
-          <div><a href="#"><img src="/images/iteration-2-images/icons/2.svg" alt="" />Pizza</a></div>
-          <div><a href="#"><img src="/images/iteration-2-images/icons/3.svg" alt="" />Burger</a></div>
-          <div><a href="#"><img src="/images/iteration-2-images/icons/4.svg" alt="" />Kızartmalar</a></div>
-          <div><a href="#"><img src="/images/iteration-2-images/icons/5.svg" alt="" />Fast Food</a></div>
-          <div><a href="#"><img src="/images/iteration-2-images/icons/6.svg" alt="" />Gazlı İçecek</a></div>
+          {kategoriler.map((kategori) => (
+            <div key={kategori.ad}>
+              <a href="#">
+                <img src={`/images/iteration-2-images/icons/${kategori.ikon}.svg`} alt="" />
+                {kategori.ad}
+              </a>
+            </div>
+          ))}
         </nav>
 
         <section className="ozel-lezzetler-section">
@@ -48,41 +75,17 @@ function Home() {
           <p>en çok paketlenen menüler</p>
           <h2>Acıktıran Kodlara Doyuran Lezzetler</h2>
           <div className="menu-filtre">
-            <button><img src="/images/iteration-2-images/icons/1.svg" alt="" />Ramen</button>
-            <button><img src="/images/iteration-2-images/icons/2.svg" alt="" />Pizza</button>
-            <button><img src="/images/iteration-2-images/icons/3.svg" alt="" />Burger</button>
-            <button><img src="/images/iteration-2-images/icons/4.svg" alt="" />French fries</button>
-            <button><img src="/images/iteration-2-images/icons/5.svg" alt="" />Fast food</button>
-            <button><img src="/images/iteration-2-images/icons/6.svg" alt="" />Soft drinks</button>
+            {menuFiltreleri.map((filtre) => (
+              <button key={filtre.ad}>
+                <img src={`/images/iteration-2-images/icons/${filtre.ikon}.svg`} alt="" />
+                {filtre.ad}
+              </button>
+            ))}
           </div>
           <div className="urun-listesi">
-            <div className="urun-karti">
-              <img src="/images/iteration-2-images/pictures/food-1.png" alt="Terminal Pizza" />
-              <h3>Terminal Pizza</h3>
-              <div className="urun-bilgi">
-                <span className="puan">4.9</span>
-                <span className="yorum">(200)</span>
-                <span className="fiyat">60₺</span>
-              </div>
-            </div>
-            <div className="urun-karti">
-              <img src="/images/iteration-2-images/pictures/food-2.png" alt="Position Absolute Acı Pizza" />
-              <h3>Position Absolute Acı Pizza</h3>
-              <div className="urun-bilgi">
-                <span className="puan">4.9</span>
-                <span className="yorum">(200)</span>
-                <span className="fiyat">60₺</span>
-              </div>
-            </div>
-            <div className="urun-karti">
-              <img src="/images/iteration-2-images/pictures/food-3.png" alt="useEffect Tavuklu Burger" />
-              <h3>useEffect Tavuklu Burger</h3>
-              <div className="urun-bilgi">
-                <span className="puan">4.9</span>
-                <span className="yorum">(200)</span>
-                <span className="fiyat">60₺</span>
-              </div>
-            </div>
+            {urunler.map((urun) => (
+              <UrunKarti key={urun.ad} urun={urun} />
+            ))}
           </div>
         </section>
       </main>
