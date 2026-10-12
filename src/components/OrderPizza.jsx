@@ -25,6 +25,7 @@ function OrderPizza({ setSiparis }) {
   })
 
   const [isValid, setIsValid] = useState(false)
+  const [hata, setHata] = useState('')
 
   useEffect(() => {
     if (
@@ -105,6 +106,8 @@ function OrderPizza({ setSiparis }) {
     e.preventDefault()
     if (!isValid) return
 
+    setHata('')
+
     axios
       .post('https://reqres.in/api/pizza', formData, {
         headers: { 'x-api-key': import.meta.env.VITE_REQRES_KEY },
@@ -114,7 +117,16 @@ function OrderPizza({ setSiparis }) {
         setSiparis(res.data)
         history.push('/success')
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err)
+        if (!err.response) {
+          setHata('İnternet bağlantısına ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin.')
+        } else if (err.response.status === 401 || err.response.status === 403) {
+          setHata('Sipariş servisine erişim reddedildi. API anahtarını kontrol edin.')
+        } else {
+          setHata('Sipariş gönderilemedi. Lütfen tekrar deneyin.')
+        }
+      })
   }
 
   const secimler = formData.malzemeler.length * 5 * formData.adet
@@ -286,6 +298,8 @@ function OrderPizza({ setSiparis }) {
                 </button>
               </div>
             </div>
+
+            {hata && <p className="hata" role="alert">{hata}</p>}
           </form>
         </section>
       </main>
